@@ -6,12 +6,16 @@ Live at [itstemo.github.io](https://itstemo.github.io).
 
 ## Development
 
+Requires Node 22.12+.
+
 ```sh
 npm install
 npm run dev      # dev server at localhost:4321
 npm run build    # production build to ./dist
 npm run preview  # serve the production build locally
 ```
+
+Changes ship as PRs from `temo/<slug>` branches. CI builds every PR; merging to `master` deploys automatically.
 
 ## Writing a blog post
 

@@ -2,17 +2,12 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Temo Ojeda" header={false}>
+<Base title="Temo Ojeda" wordmark={false}>
   <section class="hero">
     <div class="title">
       <h1 class="name">Temo<br /><em>Ojeda</em></h1>
       <p class="tagline">Data, software, and agaves.</p>
     </div>
-    <nav class="hero-nav">
-      <a href="/blog" class="link">Blog</a>
-      <a href="/about" class="link">About</a>
-      <a href="/contact" class="link">Contact</a>
-    </nav>
   </section>
 </Base>
 
@@ -42,13 +37,4 @@ import Base from '../layouts/Base.astro';
     color: var(--muted);
   }
 
-  .hero-nav {
-    display: flex;
-    gap: 2.5rem;
-    margin-top: 2.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
 </style>
