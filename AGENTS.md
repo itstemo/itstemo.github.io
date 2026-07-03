@@ -26,6 +26,6 @@ Personal site of Temo Ojeda. Astro 7, TypeScript strict, static output, deployed
 
 - Every change ships as a PR: branch `temo/<slug>` off freshly pulled `master`, push, `gh pr create`. Temo merges PRs himself, often immediately — never merge for him.
 - Because PRs merge fast: before pushing a follow-up commit, check the PR is still open (`gh pr view <n> --json state`). If it already merged, cherry-pick onto a new branch off updated `master` instead — pushing to a merged branch strands the commit.
-- CI builds every PR (`.github/workflows/ci.yml`); merging to `master` auto-deploys to GitHub Pages (`deploy.yml`). Both need Node 22 — keep the versions in sync with `package.json` engines if bumped.
+- CI builds every PR (`.github/workflows/ci.yml`); merging to `master` auto-deploys to GitHub Pages (`deploy.yml`). Both build on Node 24 — keep CI, deploy, and `package.json` engines in sync when bumping, and bump action majors (`checkout`, `setup-node`, `deploy-pages`, `withastro/action`) when GitHub deprecates a runtime.
 - Before opening a PR: `npm run build` locally, and verify visually with the dev server (`.claude/launch.json` has an `astro-dev` config) — check light and dark mode, desktop and mobile widths. Restart the dev server after switching git branches; it gets confused by files changing underneath it.
 - Design decisions Temo has already made (don't relitigate): no email on the contact page (GitHub and X only); no temo.me domain; home name caps at 8.5rem; nav lives top-right on every page.
