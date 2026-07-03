@@ -9,7 +9,7 @@ Personal site of Temo Ojeda. Astro 7, TypeScript strict, static output, deployed
 
 ## Architecture
 
-- `src/layouts/Base.astro` — the only layout. Head, fonts, theme toggle, and the site header (pass `header={false}` to hide it, as the home page does).
+- `src/layouts/Base.astro` — the only layout. Head, fonts, and the site header (nav + theme toggle, always top-right on every page; pass `wordmark={false}` to hide the wordmark, as the home page does).
 - `src/pages/` — file-based routes: `index`, `about`, `contact`, `blog/index`, `blog/[slug]`.
 - `src/content/blog/*.md` — blog posts. Schema in `src/content.config.ts` (title, optional description, date, draft flag). Filename = URL slug.
 - `src/styles/global.css` — all design tokens and shared styles.
