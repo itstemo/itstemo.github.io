@@ -89,12 +89,16 @@ const {
       <slot />
     </main>
     <script is:inline>
+      let themeTransitionTimer;
       document.getElementById('theme-toggle').addEventListener('click', () => {
-        const explicit = document.documentElement.dataset.theme;
+        const root = document.documentElement;
         const systemDark = matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = explicit ? explicit === 'dark' : systemDark;
+        const isDark = root.dataset.theme ? root.dataset.theme === 'dark' : systemDark;
         const next = isDark ? 'light' : 'dark';
-        document.documentElement.dataset.theme = next;
+        root.classList.add('theme-transition');
+        clearTimeout(themeTransitionTimer);
+        themeTransitionTimer = setTimeout(() => root.classList.remove('theme-transition'), 500);
+        root.dataset.theme = next;
         localStorage.setItem('theme', next);
       });
     </script>

@@ -91,6 +91,22 @@ h4 {
   }
 }
 
+/* Cross-fade colors when the theme toggle flips light/dark; the class
+   is added by the toggle script only for the duration of the switch */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition:
+      background-color 0.45s ease,
+      color 0.45s ease,
+      border-color 0.45s ease,
+      fill 0.45s ease,
+      stroke 0.45s ease;
+  }
+}
+
 .site-header {
   display: flex;
   flex-wrap: wrap;
