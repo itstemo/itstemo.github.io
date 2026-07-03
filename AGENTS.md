@@ -16,7 +16,7 @@ Personal site of Temo Ojeda. Astro 7, TypeScript strict, static output, deployed
 
 ## Design rules
 
-- Minimal, editorial. Paper background, display serif (Instrument Serif) for headings and the name, Inter for body text. Fonts are self-hosted via `@fontsource` packages — no external font requests.
+- Minimal, editorial. Paper background, full-width poster layout (`--edge` token controls page margins). Hybrid typography with three fonts, each with one job: Instrument Serif (`--font-display`) for identity — the name, wordmark, and page titles; heavy Inter (`--font-body`, weight 800) for article structure — post titles, subheads, dates, nav; Newsreader (`--font-serif`) for long-form reading — post bodies, descriptions, the tagline. Fonts are self-hosted via `@fontsource` packages — no external font requests.
 - Dark mode uses CSS `light-dark()` with `color-scheme`. It follows the system by default; the toggle sets `data-theme` on `<html>` and persists to localStorage. Any new color must be defined as a `light-dark()` token in `:root` — never hardcode a hex value in a component.
 - Nav links use the `.link` class (animated underline via `::after` scaleX). Prose links use plain underlines.
 - No client-side JavaScript beyond the two small inline theme scripts in `Base.astro`. Keep it that way — no frameworks, no islands, unless explicitly requested.

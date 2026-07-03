@@ -10,12 +10,12 @@ everything markdown can render here.
 
 ## Headings and text
 
-Regular paragraphs render in a quiet sans-serif. **Bold**, *italic*, and
-[links](https://astro.build/) all work as expected, and headings pick up the
-display serif.
+Long-form text reads in a bookish serif. **Bold**, *italic*, and
+[links](https://astro.build/) all work as expected, and headings switch to a
+heavy sans that carries the structure.
 
-> Pull quotes get the editorial treatment — big, serif, and italic, with a rule
-> down the left side.
+> Pull quotes get the editorial treatment — serif, italic, with a rule down
+> the left side.
 
 ## Code
 
