@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+---
+
+<Base title="Blog — Temo Ojeda">
+  <h1 class="page-title">Blog</h1>
+  <ul class="posts">
+    {
+      posts.map((post) => (
+        <li>
+          <p class="meta">{formatDate(post.data.date)}</p>
+          <a href={`/blog/${post.id}/`} class="link post-title">
+            {post.data.title}
+          </a>
+          {post.data.description && <p class="description">{post.data.description}</p>}
+        </li>
+      ))
+    }
+  </ul>
+</Base>
+
+<style>
+  .page-title {
+    margin: 0 0 3rem;
+    font-size: 3rem;
+  }
+
+  .posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .posts li {
+    margin-bottom: 2.5rem;
+  }
+
+  .posts .meta {
+    margin: 0 0 0.375rem;
+  }
+
+  .post-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    line-height: 1.15;
+  }
+
+  .description {
+    margin: 0.5rem 0 0;
+    color: var(--body);
+    max-width: 34rem;
+  }
+</style>
