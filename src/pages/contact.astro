@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Contact — Temo Ojeda">
+  <h1 class="page-title">Contact</h1>
+  <div class="prose">
+    <p>The best way to reach me:</p>
+    <ul class="channels">
+      <li>
+        <span class="meta">Email</span>
+        <a href="mailto:ojeda.temo@gmail.com" class="link">ojeda.temo@gmail.com</a>
+      </li>
+      <li>
+        <span class="meta">GitHub</span>
+        <a href="https://github.com/itstemo" class="link">github.com/itstemo</a>
+      </li>
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .page-title {
+    margin: 0 0 3rem;
+    font-size: 3rem;
+  }
+
+  .channels {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .channels li {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .channels .meta {
+    min-width: 4.5rem;
+  }
+</style>
