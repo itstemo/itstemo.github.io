@@ -77,7 +77,7 @@ const esHref = lang === 'es' ? Astro.url.pathname : altLangHref;
           aria-label={`Switch to ${otherLang === 'es' ? 'Spanish' : 'English'}`}
           onclick={`localStorage.setItem('lang', '${otherLang}')`}
         >
-          {otherLang.toUpperCase()}
+          {lang.toUpperCase()}
         </a>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
       <svg
