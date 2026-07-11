@@ -5,28 +5,36 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/newsreader';
 import '@fontsource-variable/newsreader/wght-italic.css';
 import '../styles/global.css';
+import { useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
   title: string;
   description?: string;
   wordmark?: boolean;
+  lang?: Lang;
+  /** Path to this same page in the other locale, e.g. "/es/about" from "/about". */
+  altLangHref: string;
 }
 
-const {
-  title,
-  description = 'Temo Ojeda — data, software, and agaves.',
-  wordmark = true,
-} = Astro.props;
+const { title, description, wordmark = true, lang = 'en', altLangHref } = Astro.props;
+
+const t = useTranslations(lang);
+const pageDescription = description ?? t('meta.description');
+const otherLang = lang === 'en' ? 'es' : 'en';
+const enHref = lang === 'en' ? Astro.url.pathname : altLangHref;
+const esHref = lang === 'es' ? Astro.url.pathname : altLangHref;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" hreflang="en" href={new URL(enHref, Astro.site)} />
+    <link rel="alternate" hreflang="es" href={new URL(esHref, Astro.site)} />
     <title>{title}</title>
     <script is:inline>
       const stored = localStorage.getItem('theme');
@@ -34,6 +42,19 @@ const {
         document.documentElement.dataset.theme = stored;
       }
     </script>
+    {
+      lang === 'en' && (
+        <script is:inline define:vars={{ altLangHref }}>
+          if (!localStorage.getItem('lang')) {
+            const browserLang = navigator.language || '';
+            if (browserLang.toLowerCase().startsWith('es')) {
+              localStorage.setItem('lang', 'es');
+              location.replace(altLangHref);
+            }
+          }
+        </script>
+      )
+    }
   </head>
   <body>
     <header class="site-header">
@@ -46,10 +67,18 @@ const {
       }
       <div class="header-right">
         <nav>
-          <a href="/blog" class="link">Blog</a>
-          <a href="/about" class="link">About</a>
-          <a href="/contact" class="link">Contact</a>
+          <a href={lang === 'en' ? '/blog' : '/es/blog'} class="link">{t('nav.blog')}</a>
+          <a href={lang === 'en' ? '/about' : '/es/about'} class="link">{t('nav.about')}</a>
+          <a href={lang === 'en' ? '/contact' : '/es/contact'} class="link">{t('nav.contact')}</a>
         </nav>
+        <a
+          href={altLangHref}
+          class="lang-toggle"
+          aria-label={`Switch to ${otherLang === 'es' ? 'Spanish' : 'English'}`}
+          onclick={`localStorage.setItem('lang', '${otherLang}')`}
+        >
+          {otherLang.toUpperCase()}
+        </a>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
       <svg
         class="icon-moon"
