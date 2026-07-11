@@ -1,11 +1,11 @@
 ---
-import Base from '../layouts/Base.astro';
-import { useTranslations } from '../i18n/utils';
+import Base from '../../layouts/Base.astro';
+import { useTranslations } from '../../i18n/utils';
 
-const t = useTranslations('en');
+const t = useTranslations('es');
 ---
 
-<Base title="Contact — Temo Ojeda" lang="en" altLangHref="/es/contact">
+<Base title="Contacto — Temo Ojeda" lang="es" altLangHref="/contact">
   <h1 class="page-title">{t('contact.title')}</h1>
   <div class="prose">
     <p>{t('contact.intro')}</p>
