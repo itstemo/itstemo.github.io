@@ -30,6 +30,9 @@ const esHref = lang === 'es' ? Astro.url.pathname : altLangHref;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tells the browser the page's schemes before any CSS loads, so the very
+         first paint uses a dark canvas in dark mode instead of white. -->
+    <meta name="color-scheme" content="light dark" />
     <meta name="description" content={pageDescription} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -67,8 +70,8 @@ const esHref = lang === 'es' ? Astro.url.pathname : altLangHref;
       }
       <div class="header-right">
         <nav>
-          <a href={lang === 'en' ? '/blog' : '/es/blog'} class="link">{t('nav.blog')}</a>
           <a href={lang === 'en' ? '/about' : '/es/about'} class="link">{t('nav.about')}</a>
+          <a href={lang === 'en' ? '/blog' : '/es/blog'} class="link">{t('nav.blog')}</a>
           <a href={lang === 'en' ? '/contact' : '/es/contact'} class="link">{t('nav.contact')}</a>
         </nav>
         <a
