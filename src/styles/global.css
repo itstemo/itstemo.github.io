@@ -2,6 +2,13 @@
   navigation: auto;
 }
 
+/* The root snapshots are captured with the html background, which leaves the
+   live canvas unpainted (UA default white) during the cross-fade. Paint paper
+   on the transition overlay so half-transparent frames don't flash white. */
+::view-transition {
+  background: var(--paper);
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 0.3s;

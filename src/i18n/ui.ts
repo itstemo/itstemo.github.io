@@ -2,8 +2,8 @@ export const defaultLang = 'en';
 
 export const ui = {
   en: {
-    'nav.blog': 'Blog',
     'nav.about': 'About',
+    'nav.blog': 'Blog',
     'nav.contact': 'Contact',
     'meta.description': 'Temo Ojeda — data, software, and agaves.',
     'home.tagline': 'Data, software, and agaves.',
@@ -20,8 +20,8 @@ export const ui = {
     'blog.title': 'Blog',
   },
   es: {
-    'nav.blog': 'Blog',
     'nav.about': 'Acerca',
+    'nav.blog': 'Blog',
     'nav.contact': 'Contacto',
     'meta.description': 'Temo Ojeda — datos, software y agaves.',
     'home.tagline': 'Datos, software y agaves.',
