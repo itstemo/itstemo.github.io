@@ -30,15 +30,19 @@ const esHref = lang === 'es' ? Astro.url.pathname : altLangHref;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Tells the browser the page's schemes before any CSS loads, so the very
-         first paint uses a dark canvas in dark mode instead of white. -->
-    <meta name="color-scheme" content="light dark" />
     <meta name="description" content={pageDescription} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" hreflang="en" href={new URL(enHref, Astro.site)} />
     <link rel="alternate" hreflang="es" href={new URL(esHref, Astro.site)} />
     <title>{title}</title>
+    <!-- Colors the canvas for readers who follow their OS. It can't help a
+         reader who has toggled the site against their OS — a static tag can't
+         know localStorage — and while a render-blocking stylesheet is in flight
+         the browser hasn't resolved any style, so this tag is all it has to go
+         on. That's why the stylesheet is inlined (see astro.config.ts): it
+         leaves no window where the theme isn't known yet. -->
+    <meta name="color-scheme" content="light dark" />
     <script is:inline>
       const stored = localStorage.getItem('theme');
       if (stored === 'light' || stored === 'dark') {
@@ -70,9 +74,9 @@ const esHref = lang === 'es' ? Astro.url.pathname : altLangHref;
       }
       <div class="header-right">
         <nav>
-          <a href={lang === 'en' ? '/about' : '/es/about'} class="link">{t('nav.about')}</a>
-          <a href={lang === 'en' ? '/blog' : '/es/blog'} class="link">{t('nav.blog')}</a>
-          <a href={lang === 'en' ? '/contact' : '/es/contact'} class="link">{t('nav.contact')}</a>
+          <a href={lang === 'en' ? '/about/' : '/es/about/'} class="link">{t('nav.about')}</a>
+          <a href={lang === 'en' ? '/blog/' : '/es/blog/'} class="link">{t('nav.blog')}</a>
+          <a href={lang === 'en' ? '/contact/' : '/es/contact/'} class="link">{t('nav.contact')}</a>
         </nav>
         <a
           href={altLangHref}
